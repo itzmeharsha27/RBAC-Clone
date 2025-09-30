@@ -9,7 +9,10 @@ The system is designed to:
 - **RBAC Implementation**: A secure role-based access system where users are granted permissions based on their roles (Admin, Teacher, Student).
 - **Teacher Availability**: Teachers can view their schedules, request changes, and see which classes they are assigned to.
 - **User Management**: Admins can add, modify, or delete users and manage their roles and permissions.
-##Acces Deployed App
+## Test Deployed App
+- **Issues**:
+  - ** App is currently facing an issue with frontend accessing cookie from backend in render deployment, will be corrected soon
+
 [RBAC Frontend Dashboard](https://rbac-frontend-bu6e.onrender.com/dashboard)  
 ## Technologies Used
 
