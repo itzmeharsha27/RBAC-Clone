@@ -33,7 +33,7 @@ const [selectedTeacher, setSelectedTeacher] = useState("");
 
       const data = await response.data
       setFdata(data)
-	   console.log(data)
+	   //console.log(data)
 
       if (data.success) {
 		    toast.success(data.message);
@@ -54,7 +54,7 @@ const [selectedTeacher, setSelectedTeacher] = useState("");
       }
     } catch (error) {
 		if(error){
-			toast.error(error);
+			toast.error(error.response.data.message);
 			console.error("Error fetching schedules:", error);
 		}
     }
