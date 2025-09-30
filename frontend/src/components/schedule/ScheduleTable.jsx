@@ -236,7 +236,7 @@ const ScheduleTable = () => {
                     key={index}
                     className="px-6 py-4 whitespace-nowrap text-sm text-gray-300"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center ">
                       <span>{subject || ""}</span>
                       
                       {selectedClass !== "Select a class" && (
