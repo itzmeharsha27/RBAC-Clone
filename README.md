@@ -12,7 +12,7 @@ The system is designed to:
 - **User Management**: Admins can add, modify, or delete users and manage their roles and permissions.
 ## Test Deployed App
 - **Issues**:
-  - The app is currently experiencing an issue with the frontend accessing cookies from the backend in the Render deployment. This will be corrected soon.
+  - ✅The app is currently experiencing an issue with the frontend accessing cookies from the backend in the Render deployment.(Solved).Ensure that your browser is not blockng third-party cookies and cross-site tracking (this will prevent site from using cross-site cookies)
   - Responses are delayed due to limited resources in the free-tier hosting. Please be patient while performing operations during testing, as it might take some time to receive a response.
   - All pages are functioning properly; however, rerouting has some issues with the hosting platform. This will also be addressed soon.
 
