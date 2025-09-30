@@ -11,6 +11,7 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({ email: "", password: "" });
+	const [loading, setLoading] = useState(false); // Add loading state
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,32 +19,33 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true); // Start loading
 
 		try {
 			const request = await post("/api/auth/login", formData);
 			const response = request.data;
-			//console.log(response.token);
-			const expires = new Date(Date.now() + 36000 * 1000).toUTCString(); // Set expiry to 36000 seconds from now
+
+			// Set token in cookies
+			const expires = new Date(Date.now() + 36000 * 1000).toUTCString(); // 1-hour expiry
 			document.cookie = `token=${response.token}; path=/; expires=${expires}; secure; SameSite=None`;
 
-
 			if (request.status === 200) {
-				
+				toast.success(response.message);
+				dispatch(SetUser(response.user));
+
 				if (response.user.role === "HOD") {
 					navigate("/");
 				} else {
 					navigate("/");
 				}
-				
-				toast.success(response.message);
-				
-				dispatch(SetUser(response.user));
 			}
 		} catch (error) {
 			console.log(error);
 			if (error.response) {
 				toast.error(error.response.data.message);
 			}
+		} finally {
+			setLoading(false); // Stop loading
 		}
 	};
 
@@ -54,7 +56,13 @@ const Login = () => {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.5 }}
 		>
-			<div className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 max-w-md w-full">
+			<div className="relative bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 max-w-md w-full">
+				{/* Loading Spinner */}
+				{loading && (
+					<div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-80 z-10">
+						<div className="h-10 w-10 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+					</div>
+				)}
 				<h2 className="text-2xl font-semibold text-center text-gray-100 mb-6">
 					Login
 				</h2>
@@ -98,8 +106,9 @@ const Login = () => {
 					<button
 						type="submit"
 						className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+						disabled={loading} // Disable button when loading
 					>
-						Login
+						{loading ? "Logging in..." : "Login"}
 					</button>
 				</form>
 				<p className="text-gray-400 text-sm text-center mt-4">
@@ -109,7 +118,8 @@ const Login = () => {
 					</Link>
 				</p>
 				<p className="text-gray-400 text-sm text-center mt-4">
-					Use <strong>admin@gmail.com</strong> for admin login for testing.<br/>
+					Use <strong>admin@gmail.com</strong> for admin login for testing.
+					<br />
 					The password for all the existing users is <strong>1234</strong>.
 				</p>
 			</div>
