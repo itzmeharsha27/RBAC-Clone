@@ -22,6 +22,7 @@ const Login = () => {
 		try {
 			const request = await post("/api/auth/login", formData);
 			const response = request.data;
+			cosole.log(response.token);
 
 			if (request.status === 200) {
 				
