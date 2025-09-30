@@ -54,7 +54,7 @@ const [selectedTeacher, setSelectedTeacher] = useState("");
       }
     } catch (error) {
 		if(error){
-			toast.error(error.response.message);
+			toast.error(error);
 			console.error("Error fetching schedules:", error);
 		}
     }
