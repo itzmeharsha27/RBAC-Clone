@@ -275,8 +275,9 @@ You can run both the backend and frontend concurrently using tools like **Nodemo
 You can run both the backend and frontend concurrently using tools like **Nodemon** for the backend and the default React development server for the frontend.
 
 ## Conclusion
+**Schedulo** is an all-in-one platform for managing class schedules, teacher assiignments, and student data, with a strong focus on security through role-bassed acess control (RBAC). Built using **React**, **Redux**, and **Tailwind-CSS**, it ensures a seamless user experience while offering scalablility, maintainabiity, and efficiency for academic scheduling and management.
 
-Schedulo is a comprehensive solution for managing class schedules, teachers, and students, emphasizing security through RBAC and delivering a seamless user experience. Leveraging modern tools like React, Redux, and Material-UI, it offers a scalable, maintainable, and efficient platform tailored for academic scheduling and management.
+
 ---
 
 **Note**: Ensure that MongoDB is running before launching the application, and use valid environment variables for secure connections.
