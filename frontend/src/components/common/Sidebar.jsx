@@ -9,7 +9,7 @@ const SIDEBAR_ITEMS = [
 		name: "Dashboard",
 		icon: BarChart2,
 		color: "#6366f1",
-		href: "/",
+		href: "/dashboard"
 	},
 	{ name: "Schedule", icon: ShoppingBag, color: "#8B5CF6", href: "/schedule" },
 	{ name: "Users", icon: Users, color: "#EC4899", href: "/users" },
