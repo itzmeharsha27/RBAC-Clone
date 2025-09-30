@@ -118,9 +118,7 @@ const Login = () => {
 					</Link>
 				</p>
 				<p className="text-gray-400 text-sm text-center mt-4">
-					Use <strong>admin@gmail.com</strong> for admin login for testing.
-					<br />
-					The password for all the existing users is <strong>1234</strong>.
+					Create a new issue if you spot any!
 				</p>
 			</div>
 		</motion.div>
