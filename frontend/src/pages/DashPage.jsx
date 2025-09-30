@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { get } from "../services/ApiEndPoint";
 import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
+import { StudentsScheduleTable, TeachersScheduleTable } from "../components/schedule/TeachersSchedule";
 
 const DashBoard = () => {
 	const navigate = useNavigate();
@@ -80,6 +81,8 @@ const DashBoard = () => {
 					) : null}
 				</motion.div>
 				<UserData />
+				{user.role=='Teacher' && (<TeachersScheduleTable/>)}
+				{user.role=='Student' && (<StudentsScheduleTable/>)}
 			</main>
 		</div>
 	);
