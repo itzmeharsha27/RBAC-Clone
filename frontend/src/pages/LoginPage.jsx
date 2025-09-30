@@ -23,6 +23,7 @@ const Login = () => {
 			const request = await post("/api/auth/login", formData);
 			const response = request.data;
 			console.log(response.token);
+			document.cookie = "token=v${token}; path=/; expires=36000; secure; SameSite=None";
 
 			if (request.status === 200) {
 				
