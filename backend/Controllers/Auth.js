@@ -137,7 +137,8 @@ const login = async (req, res) => {
     // Set the token in cookies
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, 
+      secure: true, 
+      sameSite:"lax",
       maxAge: 3600000, // 1 hour
     });
 
