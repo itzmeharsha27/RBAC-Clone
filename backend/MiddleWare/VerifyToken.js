@@ -7,7 +7,7 @@ const isAdmin =async(req,res,next)=>{
 
         const token = req.cookies.token
         if(!token){
-            return res.status(401).json({success:false,message:"Unautharised Token"})
+            return res.status(401).json({success:false,message:"Unauthorised Token"})
         }
 
         const decoded =jwt.verify(token,process.env.SECRETKEY)
@@ -19,7 +19,7 @@ const isAdmin =async(req,res,next)=>{
         }
         
         if(user.role!=='HOD'){
-            return res.status(403).json({success:false,message:"Unautharised User Access Denied"})
+            return res.status(403).json({success:false,message:"Unauthorised User Access Denied"})
         }
         req.user=user
         next()
