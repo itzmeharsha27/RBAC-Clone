@@ -45,7 +45,20 @@ const USTable = () => {
     setFilteredUsers(filtered);
   };
 
-
+const handleDelete = async (id) => {
+    try {
+      const response = await deleteUser(`/api/admin/delete/${id}`);
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        setUsers(users.filter((user) => user._id !== id));
+        setFilteredUsers(filteredUsers.filter((user) => user._id !== id));
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    }
+  };
 
   return (
     <motion.div
