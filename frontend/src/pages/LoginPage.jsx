@@ -23,7 +23,9 @@ const Login = () => {
 			const request = await post("/api/auth/login", formData);
 			const response = request.data;
 			//console.log(response.token);
-			document.cookie = "token=${response.token}; path=/; expires=36000; secure; SameSite=None";
+			const expires = new Date(Date.now() + 36000 * 1000).toUTCString(); // Set expiry to 36000 seconds from now
+			document.cookie = `token=${response.token}; path=/; expires=${expires}; secure; SameSite=None`;
+
 
 			if (request.status === 200) {
 				
