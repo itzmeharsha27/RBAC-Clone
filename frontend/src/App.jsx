@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import {  Navigate, Route, Routes } from "react-router-dom";
 
 import Sidebar from "./components/common/Sidebar";
 import PublicLayout from "./Layouts/PublicLayout";
@@ -12,6 +12,7 @@ import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
 import Students from "./pages/StudentsPage";
 import { useSelector } from "react-redux";
+import NotFound from "./components/common/Notfound";
 
 function App() {
 
@@ -24,12 +25,12 @@ function App() {
 				<div className='absolute inset-0 backdrop-blur-sm' />
 				<Routes>
 				<Route element={<PublicLayout />}>
-					<Route path="/" element={<Login />} />
+					<Route path="/" element={<Navigate to="/login" />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
-					</Route>
+				</Route>
 				</Routes>	
-				<div className='flex h-screen bg-gray-900 text-gray-100 overflow-hidden'>
+				<div className='flex justify-center h-screen bg-gray-900 text-gray-100 overflow-hidden'>
 				{user?<Sidebar />:''}
 				<Routes>
 					<Route element={<UserLayout/>}>
@@ -40,7 +41,7 @@ function App() {
 						<Route path='/students' element={<Students />} />
 						<Route path='/settings' element={<SettingsPage />} />
 					</Route>
-					
+					<Route path="*" element={<NotFound/>} />
 				</Routes>
 				</div>
 			</div>
