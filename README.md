@@ -173,7 +173,13 @@ The sidebar provides navigation between various parts of the application:
 ### 3. **UserProfile Component**
 The `UserProfile` component allows teachers and students to view and edit their profiles. Admins can update any user's information.
 
+
+
 ## Setup Instructions
+
+### Prerequisites
+- MongoDB installed and running
+- Node.js and npm installed
 
 ### Backend Setup
 1. Clone the repository:
@@ -181,18 +187,42 @@ The `UserProfile` component allows teachers and students to view and edit their 
    git clone https://github.com/yourusername/college-scheduling-system.git
    cd college-scheduling-system
    ```
+
 2. Install dependencies:
    ```bash
    cd backend
    npm install
    ```
+
 3. Set up environment variables in `.env` file:
    ```bash
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/schedule_db
    JWT_SECRET=your_jwt_secret
    ```
-4. Start the server:
+
+4. Import Collation Data
+   The project includes a `RBAC.zip` file containing JSON files for initializing MongoDB collections. Follow these steps to import the data:
+
+   a. Extract the `RBAC.zip` file
+   
+   b. Use MongoDB's `mongoimport` utility to import the collections:
+   ```bash
+   # Make sure you're in the directory containing the JSON files
+   
+   # Import Users Collection
+   mongoimport --db schedule_db --collection users --file users.json --jsonArray
+   
+   # Import Schedules Collection
+   mongoimport --db schedule_db --collection schedules --file schedules.json --jsonArray
+   
+   # Import Roles Collection
+   mongoimport --db schedule_db --collection roles --file roles.json --jsonArray
+   ```
+
+   Note: Replace `schedule_db` with the database name specified in your `MONGODB_URI` if different.
+
+5. Start the server:
    ```bash
    npm start
    ```
@@ -202,14 +232,26 @@ The `UserProfile` component allows teachers and students to view and edit their 
    ```bash
    cd frontend
    ```
+
 2. Install dependencies:
    ```bash
    npm install
    ```
+
 3. Start the React application:
    ```bash
    npm start
    ```
+
+### Running Both Backend and Frontend
+You can run both the backend and frontend concurrently using tools like **Nodemon** for the backend and the default React development server for the frontend.
+
+### Troubleshooting
+- Ensure MongoDB is running before launching the application
+- Verify that all JSON files from `RBAC.zip` are imported correctly
+- Check that environment variables are correctly set
+- Confirm that all dependencies are installed
+
 
 ### Running Both Backend and Frontend
 You can run both the backend and frontend concurrently using tools like **Nodemon** for the backend and the default React development server for the frontend.
