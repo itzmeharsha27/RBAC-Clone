@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Signup = () => {
 
-	const navigate =useNavigate()
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -15,14 +15,24 @@ const Signup = () => {
 		role: "Student",
 		department: "",
 	});
+	const [isMatching, setIsMatching] = useState(false); // Tracks password match status
 
 	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+
+		if (name === "confirmPassword" || name === "password") {
+			setIsMatching(
+				name === "confirmPassword" 
+					? value === formData.password 
+					: value === formData.confirmPassword
+			);
+		}
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (formData.password !== formData.confirmPassword) {
+		if (!isMatching) {
 			toast.error("Passwords do not match");
 			return;
 		}
@@ -32,11 +42,11 @@ const Signup = () => {
 			const response = request.data;
 			if (request.status === 200) {
 				toast.success(response.message);
-				navigate('/login')
+				navigate('/login');
 			}
 		} catch (error) {
-			console.log(error);
-			toast.error("Registration failed. Please try again.");
+			//console.log(error);
+			toast.error(error.response.data.message);
 		}
 	};
 
@@ -95,7 +105,11 @@ const Signup = () => {
 							type="password"
 							name="confirmPassword"
 							id="confirmPassword"
-							className="bg-gray-700 text-white placeholder-gray-400 rounded-lg w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+							className={`bg-gray-700 text-white placeholder-gray-400 rounded-lg w-full px-4 py-2 focus:outline-none focus:ring-2 ${
+								isMatching
+									? "ring-green-500 border-green-500"
+									: "ring-red-500 border-red-500"
+							}`}
 							placeholder="Confirm your password"
 							value={formData.confirmPassword}
 							onChange={handleChange}
@@ -131,7 +145,12 @@ const Signup = () => {
 					</div>
 					<button
 						type="submit"
-						className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+						className={`w-full text-white font-semibold py-2 px-4 rounded-lg ${
+							isMatching
+								? "bg-blue-500 hover:bg-blue-600"
+								: "bg-gray-500 cursor-not-allowed"
+						}`}
+						disabled={!isMatching} // Disable button if passwords don't match
 					>
 						Signup
 					</button>
