@@ -21,7 +21,7 @@ const StudetsTable = () => {
           const fetchedUsers = response.data.students;
           setUsers(fetchedUsers);
           setFilteredUsers(fetchedUsers); 
-        }else if(response.status === 200 && response.data.message="No Students found."){
+        }else if(response.status === 200 && response.data.message=="No Students found."){
             toast.error(response.data.message);
         }
       } catch (error) {
