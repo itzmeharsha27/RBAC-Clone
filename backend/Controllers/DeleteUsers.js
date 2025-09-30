@@ -1,6 +1,7 @@
 import UserModel from '../Models/user.js'
 import Teacher from '../Models/teachers.js'
 import Student from '../Models/students.js'
+import Schedule from '../Models/schedule.js';
 
 const deleteuser = async(req,res) =>{
     try {
@@ -10,6 +11,7 @@ const deleteuser = async(req,res) =>{
         if(checkAdmin.role =='HOD'){
             return res.status(409).json({message:"you Cannot  Delete Yourself"})
         }else if (checkAdmin.role === "Teacher") {
+            await Schedule.deleteMany({ teacherId: userId });
             await Teacher.findOneAndDelete({ userId: userId });
         } else if (checkAdmin.role === "Student") {
             await Student.findOneAndDelete({ userId: userId});
