@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { get } from "../services/ApiEndPoint";
 import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
-import { StudentsScheduleTable, TeachersScheduleTable } from "../components/schedule/TeachersSchedule";
+import { StudentsScheduleTable, TeachersScheduleTable } from "../components/schedule/TSScheduleTable";
 
 const DashBoard = () => {
 	const navigate = useNavigate();
