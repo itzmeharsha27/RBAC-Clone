@@ -11,9 +11,9 @@ The system is designed to:
 - **User Management**: Admins can add, modify, or delete users and manage their roles and permissions.
 ## Test Deployed App
 - **Issues**:
-  - ** App is currently facing an issue with frontend accessing cookie from backend in render deployment, will be corrected soon
+  - App is currently facing an issue with frontend accessing cookie from backend in render deployment, will be corrected soon
 
-[RBAC Frontend Dashboard](https://rbac-frontend-bu6e.onrender.com/dashboard)  
+[RBAC Frontend Dashboard](https://rbac-frontend-bu6e.onrender.com)  
 ## Technologies Used
 
 - **Frontend**:
