@@ -180,7 +180,7 @@ const getTeachers = async (req, res) => {
     const teachers = await UserModel.find({ role: 'Teacher' });
 
     if (teachers.length === 0) {
-      return res.status(404).json({ message: "No teachers found." });
+      return res.status(200).json({ message: "No teachers found." });
     }
 
     res.status(200).json({ teachers });
@@ -195,7 +195,7 @@ const getstudents = async (req, res) => {
     const students = await UserModel.find({ role: 'Student' });
 
     if (students.length === 0) {
-      return res.status(404).json({ message: "No Students found." });
+      return res.status(200).json({ message: "No Students found." });
     }
 
     res.status(200).json({ students });
