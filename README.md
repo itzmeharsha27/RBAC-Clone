@@ -202,7 +202,7 @@ The `UserProfile` component allows teachers and students to view and edit their 
 ### Backend Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/college-scheduling-system.git
+   git clone https://github.com/anugraheeth/RABC.git
    cd college-scheduling-system
    ```
 
@@ -215,8 +215,8 @@ The `UserProfile` component allows teachers and students to view and edit their 
 3. Set up environment variables in `.env` file:
    ```bash
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/schedule_db
-   JWT_SECRET=your_jwt_secret
+   MONGODB=mongodb://localhost:27017/schedule_db
+   SECRET=your_jwt_secret
    ```
 
 4. Import Collation Data
