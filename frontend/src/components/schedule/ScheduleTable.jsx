@@ -10,7 +10,7 @@ const ScheduleTable = () => {
 const [selectedDay, setSelectedDay] = useState("");  
 const [selectedPeriod, setSelectedPeriod] = useState(null); 
 const [availableTeachers, setAvailableTeachers] = useState([]); 
-
+const [selectedTeacher, setSelectedTeacher] = useState(""); 
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSchedules, setFilteredSchedules] = useState([]);
   const [scheduleData, setScheduleData] = useState([]);
