@@ -23,7 +23,7 @@ The system is designed to:
   - **React**: A powerful JavaScript library for building user interfaces.
   - **Redux**: For state management, ensuring efficient data flow across components.
   - **React Router**: For managing navigation and routing within the application.
-  - **Material-UI**: A popular React UI framework to build modern and responsive UIs.
+  - **Tailwind CSS**: Used to build modern and responsive UIs.
   - **Framer Motion**: For adding animations and transitions.
   - **Lucide**: A collection of open-source icons, used in the app for a clean and modern interface.
 
