@@ -30,9 +30,10 @@ const [selectedTeacher, setSelectedTeacher] = useState("");
     try {
     
       const response = await get(`/api/admin/classS/${classId}`);
+
       const data = await response.data
       setFdata(data)
-	  // console.log(data)
+	   console.log(data)
 
       if (data.success) {
 		    toast.success(data.message);
