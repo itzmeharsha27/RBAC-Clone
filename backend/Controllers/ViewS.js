@@ -7,8 +7,8 @@ const getClassSchedule = async (req, res) => {
         const schedules = await Schedule.find({ classId })
             .populate("teacherId", "name email")
             
-        if (!schedules.length) {
-            return res.status(404).json({ success: false, message: "No schedules found for this class!" });
+        if (schedules.length == 0) {
+            return res.status(200).json({ success: true, message: "No schedules found!" });
         }
 
         res.status(200).json({ success: true, message: "Class schedule retrieved successfully!", schedules });
