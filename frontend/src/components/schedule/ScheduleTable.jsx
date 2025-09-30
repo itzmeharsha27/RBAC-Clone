@@ -43,7 +43,7 @@ const ScheduleTable = () => {
             scheduleMap[dayIndex].schedule[item.period - 1] = item.teacherId.name;
           }
         });
-      } else if (data.success && data.message === "No schedules found") {
+      } else if (data.success && data.message === "No schedules found!") {
         toast.success(data.message);
       }
 
