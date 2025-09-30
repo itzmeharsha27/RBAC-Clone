@@ -1,8 +1,9 @@
-# College Scheduling System - Admin Panel and Role-Based Access Control (RBAC)
+# Schedulo - A Role-Based Access Control (RBAC) System for Managing and Scheduling Classes for Teachers
+![Demo](https://github.com/user-attachments/assets/bdde407f-ab98-4473-b912-ab5280841e9f)
 
 ## Overview
 
-This repository contains the codebase for a **College Scheduling System** built using modern JavaScript technologies, primarily **React** for the frontend, and **Node.js/Express** for the backend. The application allows the administration and management of college class schedules, including teacher assignments, student management, and role-based access control (RBAC) for different users (Admin, Teacher, and Student).
+This repository contains the codebase for Schedulo, a modern scheduling and management system for colleges. Built with React for the frontend and Node.js/Express for the backend, it facilitates the administration of class schedules, teacher assignments, and student management. It incorporates Role-Based Access Control (RBAC) to provide secure access for different users, including Admins, Teachers, and Students.
 
 The system is designed to:
 - **Manage Class Schedules**: Admins (Head of Department) can assign teachers to classes and manage class schedules.
@@ -11,7 +12,9 @@ The system is designed to:
 - **User Management**: Admins can add, modify, or delete users and manage their roles and permissions.
 ## Test Deployed App
 - **Issues**:
-  - App is currently facing an issue with frontend accessing cookie from backend in render deployment, will be corrected soon
+  - The app is currently experiencing an issue with the frontend accessing cookies from the backend in the Render deployment. This will be corrected soon.
+  - Responses are delayed due to limited resources in the free-tier hosting. Please be patient while performing operations during testing, as it might take some time to receive a response.
+  - All pages are functioning properly; however, rerouting has some issues with the hosting platform. This will also be addressed soon.
 
 [RBAC Frontend Dashboard](https://rbac-frontend-bu6e.onrender.com)  
 ## Technologies Used
@@ -88,36 +91,48 @@ The project is structured to keep the code clean, organized, and maintainable:
 
 ```
 ├── backend
-│   ├── models
-│   │   ├── User.js
-│   │   ├── Schedule.js
-│   │   └── Role.js
-│   ├── routes
-│   │   ├── authRoutes.js
-│   │   ├── scheduleRoutes.js
-│   │   └── userRoutes.js
-│   └── controllers
-│       ├── authController.js
-│       ├── scheduleController.js
-│       └── userController.js
+│   ├── Controllers
+│   │   ├── Admin.js
+│   │   ├── AssignS.js
+│   │   ├── Auth.js
+│   │   └── ViewS.js
+│   ├── MiddleWare
+│   │   └── VerifyToken.js
+│   ├── Models
+│   │   ├── class.js
+│   │   ├── schedule.js
+│   │   ├── teachers.js
+│   │   └── user.js
+│   ├── Routes
+│   │   ├── AdminRoute.js
+│   │   └── Auth.js
+│   ├── Utils
+│   │   └── db.js
+│   └── server.js
 ├── frontend
-│   ├── components
-│   │   ├── Header.js
-│   │   ├── ScheduleTable.js
-│   │   ├── Sidebar.js
-│   │   └── UserProfile.js
-│   ├── redux
-│   │   ├── actions.js
-│   │   ├── reducers.js
-│   │   └── store.js
-│   ├── pages
-│   │   ├── Dashboard.js
-│   │   ├── Schedule.js
-│   │   └── Users.js
-│   ├── App.js
-│   ├── index.js
-│   └── routes.js
-└── .env
+│   ├── src
+│   │   ├── components
+│   │   │   ├── common
+│   │   │   │   ├── Header.jsx
+│   │   │   │   └── Sidebar.jsx
+│   │   │   ├── schedule
+│   │   │   │   └── ScheduleTable.jsx
+│   │   │   └── users
+│   │   │       └── UsersTable.jsx
+│   │   ├── Layouts
+│   │   │   ├── AdminLayout.jsx
+│   │   │   └── UserLayout.jsx
+│   │   ├── pages
+│   │   │   ├── DashPage.jsx
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── SchedulePage.jsx
+│   │   │   └── UsersPage.jsx
+│   │   ├── Redux
+│   │   │   ├── AuthSlice.js
+│   │   │   └── Store.js
+│   │   ├── App.jsx
+│   │   └── main.jsx
+
 ```
 
 ## API Endpoints
@@ -127,9 +142,8 @@ The backend exposes the following API endpoints:
 ### Authentication & User Management
 - **POST /api/auth/register** - Register a new user.
 - **POST /api/auth/login** - Login and retrieve JWT token.
-- **GET /api/users** - Get a list of all users (Admin only).
-- **PATCH /api/users/:id** - Update user details.
-- **DELETE /api/users/:id** - Delete a user (Admin only).
+- **GET /api/admin/getusers** - Get a list of all users (Admin only).
+- **DELETE /api/admin/delete/:id** - Delete a user (Admin only).
 
 ### Schedule Management
 - **GET /api/admin/classS/:classId** - Fetch schedules for a specific class.
@@ -262,8 +276,7 @@ You can run both the backend and frontend concurrently using tools like **Nodemo
 
 ## Conclusion
 
-This **College Scheduling System** offers a complete solution for managing schedules, teachers, and students with an emphasis on security through **RBAC** and a smooth user experience. With modern tools such as **React**, **Redux**, and **Material-UI**, it provides a scalable, maintainable, and efficient platform for academic management.
-
+Schedulo is a comprehensive solution for managing class schedules, teachers, and students, emphasizing security through RBAC and delivering a seamless user experience. Leveraging modern tools like React, Redux, and Material-UI, it offers a scalable, maintainable, and efficient platform tailored for academic scheduling and management.
 ---
 
 **Note**: Ensure that MongoDB is running before launching the application, and use valid environment variables for secure connections.
