@@ -17,7 +17,7 @@ DbCon()
 app.use(express.json())
 app.use(cors({
     credentials: true,
-    origin : "http://localhost:5173"
+    origin : "rbac-steel.vercel.app"
 }))
 app.use(cookieparser())
 
