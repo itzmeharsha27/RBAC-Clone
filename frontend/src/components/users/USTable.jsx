@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Search,Trash} from "lucide-react"; 
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast"; 
-import {  get } from '../../services/ApiEndPoint'
+import {  get, deleteUser} from '../../services/ApiEndPoint'
 
 const USTable = () => {
   const [users, setUsers] = useState([]);
