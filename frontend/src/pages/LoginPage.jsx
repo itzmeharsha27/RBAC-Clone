@@ -26,8 +26,8 @@ const Login = () => {
 			const response = request.data;
 
 			// Set token in cookies
-			const expires = new Date(Date.now() + 3600 * 1000).toUTCString(); // 1-hour expiry
-			document.cookie = `token=${response.token}; path=/; expires=${expires}; secure; SameSite=None`;
+			// const expires = new Date(Date.now() + 3600 * 1000).toUTCString(); // 1-hour expiry
+			// document.cookie = `token=${response.token}; path=/; expires=${expires}; secure; SameSite=None`;
 
 			if (request.status === 200) {
 				toast.success(response.message);
