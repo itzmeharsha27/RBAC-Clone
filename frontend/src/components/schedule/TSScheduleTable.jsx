@@ -55,7 +55,7 @@ const TeachersScheduleTable = () => {
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 mb-8 mt-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
+      transition={{ delay: 1.2 }}
     >
       <h2 className="text-xl font-semibold text-gray-100 mb-6">Your Schedule</h2>
       <table className="min-w-full divide-y divide-gray-700">
@@ -140,7 +140,7 @@ const StudentsScheduleTable = () => {
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 mb-8 mt-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
+      transition={{ delay: 1.2 }}
     >
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-100">Class Schedule</h2>
