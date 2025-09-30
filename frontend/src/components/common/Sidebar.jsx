@@ -1,15 +1,18 @@
-import { BarChart2, GraduationCap, Menu, Settings, ShoppingBag, School, Notebook, Users } from "lucide-react";
+import { BarChart2, GraduationCap, Menu, Settings, ShoppingBag, School, Notebook, Users,LucideLogOut } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux"; 
-
+import { useSelector, useDispatch } from "react-redux"; 
+import { post } from "../../services/ApiEndPoint";
+import { Logout } from "../../Redux/AuthSlice";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom"; 
 const SIDEBAR_ITEMS = [
 	{
 		name: "Dashboard",
 		icon: BarChart2,
 		color: "#6366f1",
-		href: "/dashboard"
+		href: "/",
 	},
 	{ name: "Schedule", icon: ShoppingBag, color: "#8B5CF6", href: "/schedule" },
 	{ name: "Users", icon: Users, color: "#EC4899", href: "/users" },
@@ -19,12 +22,12 @@ const SIDEBAR_ITEMS = [
 ];
 
 const Sidebar = () => {
-
 	const user = useSelector((state) => state.Auth.user);
 	const userRole = user ? user.role : null;
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	
 	const filteredSidebarItems = SIDEBAR_ITEMS.filter((item) => {
 		if (userRole === 'HOD') {
 			return true;
@@ -37,6 +40,22 @@ const Sidebar = () => {
 		}
 		return false; 
 	});
+
+	const logout = async () => {
+		try {
+			const request = await post('/api/auth/logout');
+			const response = request.data;
+			if (request.status === 200) {
+				toast.success(response.message);
+				dispatch(Logout());
+				navigate('/login');
+			}
+		} catch (error) {
+			if (error.response) {
+				toast.error(error.response.data.message);
+			}
+		}
+	};
 
 	return (
 		<motion.div
@@ -77,6 +96,26 @@ const Sidebar = () => {
 						</Link>
 					))}
 				</nav>
+				<motion.div className="flex hover:bg-gray-700 font-medium transition-colors mb-0 cursor-pointer p-5 rounded-lg"
+							onClick={logout}
+				>
+					<LucideLogOut size={20} color="red" className="absolute bottom-6 left-8" />
+  
+					<AnimatePresence>
+						{isSidebarOpen && (
+						<motion.span
+							className="ml-8 whitespace-nowrap absolute bottom-6"
+							initial={{ opacity: 0, width: 0 }}
+							animate={{ opacity: 1, width: "auto" }}
+							exit={{ opacity: 0, width: 0 }}
+							transition={{ duration: 0.2, delay: 0.3 }}
+						>
+							LogOut
+						</motion.span>
+						)}
+					</AnimatePresence>
+				</motion.div>
+				
 			</div>
 		</motion.div>
 	);
