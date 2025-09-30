@@ -203,7 +203,7 @@ The `UserProfile` component allows teachers and students to view and edit their 
 1. Clone the repository:
    ```bash
    git clone https://github.com/anugraheeth/RABC.git
-   cd college-scheduling-system
+   cd RBAC
    ```
 
 2. Install dependencies:
@@ -215,7 +215,7 @@ The `UserProfile` component allows teachers and students to view and edit their 
 3. Set up environment variables in `.env` file:
    ```bash
    PORT=5000
-   MONGODB=mongodb://localhost:27017/schedule_db
+   MONGODB=mongodb://localhost:27017/RBAC
    SECRET=your_jwt_secret
    ```
 
@@ -229,16 +229,24 @@ The `UserProfile` component allows teachers and students to view and edit their 
    # Make sure you're in the directory containing the JSON files
    
    # Import Users Collection
-   mongoimport --db schedule_db --collection users --file users.json --jsonArray
+   mongoimport --db RBAC --collection users --file users.json --jsonArray
    
    # Import Schedules Collection
-   mongoimport --db schedule_db --collection schedules --file schedules.json --jsonArray
+   mongoimport --db RBAC --collection schedules --file schedules.json --jsonArray
    
-   # Import Roles Collection
-   mongoimport --db schedule_db --collection roles --file roles.json --jsonArray
+   # Import Teachers Collection
+   mongoimport --db RBAC --collection roles --file teacherss.json --jsonArray
+
+   # Import Hods Collection
+   mongoimport --db RBAC --collection roles --file hods.json --jsonArray
+
+   # Import Students Collection
+   mongoimport --db RBAC --collection roles --file roles.json --jsonArray
+
+  
    ```
 
-   Note: Replace `schedule_db` with the database name specified in your `MONGODB_URI` if different.
+   Note: Replace `RBAC` with the database name specified in your `MONGODB`(.env) if different.
 
 5. Start the server:
    ```bash
