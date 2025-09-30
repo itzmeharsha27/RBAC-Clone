@@ -18,10 +18,12 @@ const USTable = () => {
     const getUser = async () => {
       try {
         const response = await get(`/api/auth/getteachers`);
-        if (response.status === 200) {
+        if (response.status === 200 && response.data.message!="No Teacher found.") {
           const fetchedUsers = response.data.teachers;
           setUsers(fetchedUsers);
           setFilteredUsers(fetchedUsers); 
+        }else if(response.status === 200 && response.data.message=="No Teacher found."){
+            toast.error(response.data.message);
         }
       } catch (error) {
         console.log(error);
@@ -48,13 +50,11 @@ const USTable = () => {
 const handleDelete = async (id) => {
     try {
       const response = await deleteUser(`/api/admin/delete/${id}`);
-      if (response.status === 200 && response.data.message!="No Teacher found.") {
+      if (response.status === 200 ) {
         toast.success(response.data.message);
         setUsers(users.filter((user) => user._id !== id));
         setFilteredUsers(filteredUsers.filter((user) => user._id !== id));
-      }else if(response.status === 200 && response.data.message=="No Teacher found."){
-            toast.error(response.data.message);
-        }
+      }
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message);
