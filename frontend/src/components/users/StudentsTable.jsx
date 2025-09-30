@@ -17,10 +17,12 @@ const StudetsTable = () => {
     const getUser = async () => {
       try {
         const response = await get(`/api/auth/getstudents`);
-        if (response.status === 200) {
+        if (response.status === 200 && response.data.message!="No Students found.") {
           const fetchedUsers = response.data.students;
           setUsers(fetchedUsers);
           setFilteredUsers(fetchedUsers); 
+        }else if(response.status === 200 && response.data.message="No Students found."){
+            toast.error(response.data.message);
         }
       } catch (error) {
         console.log(error);
