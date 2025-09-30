@@ -16,7 +16,7 @@ const DashBoard = () => {
 	const [studentCount, setStudentCount] = useState(0);
 
 	const user = useSelector((state) => state.Auth.user);
-	console.log(user)
+	//console.log(user)
 	useEffect(() => {
 		
 		if (!user) {
